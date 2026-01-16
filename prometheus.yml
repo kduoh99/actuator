@@ -1,24 +1,24 @@
 global:
-  scrape_interval: 15s
-  evaluation_interval: 15s
-  scrape_timeout: 10s
+  scrape_interval: 15s                    # 메트릭 수집 주기
+  scrape_timeout: 10s                     # 메트릭 수집 타임아웃
+  evaluation_interval: 15s                # 규칙 평가 주기
 
-rule_files:
+rule_files:                               # 규칙 파일 경로
 #  - "alert_rules.yml"
 
-alerting:
+alerting:                                 # 알림 전송 설정
   alertmanagers:
     - static_configs:
         - targets:
 #           - alertmanager:9093
 
 scrape_configs:
-  - job_name: "prometheus"
+  - job_name: "prometheus"                # 자체 메트릭 수집
     static_configs:
       - targets: ["localhost:9090"]
 
-  - job_name: "spring-actuator"
-    metrics_path: '/actuator/prometheus'
-    scrape_interval: 5s
+  - job_name: "spring-actuator"           # 애플리케이션 메트릭 수집
+    metrics_path: '/actuator/prometheus'  # 메트릭 엔드포인트
+    scrape_interval: 5s                   # 개별 메트릭 수집 주기
     static_configs:
       - targets: ['host.docker.internal:8080']

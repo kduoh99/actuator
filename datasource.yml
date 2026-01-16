@@ -1,9 +1,9 @@
 apiVersion: 1
 
 datasources:
-  - name: Prometheus
-    type: prometheus
-    access: proxy
-    url: http://prometheus:9090
-    isDefault: true
-    editable: true
+  - name: Prometheus             # Grafana에서 사용할 데이터소스 이름
+    type: prometheus             # Prometheus 데이터소스 타입
+    access: proxy                # 브라우저 대신 Grafana 서버가 Prometheus에 직접 요청
+    url: http://prometheus:9090  # Prometheus 엔드포인트
+    isDefault: true              # 기본 데이터소스로 설정
+    editable: true               # UI 수정 허용
